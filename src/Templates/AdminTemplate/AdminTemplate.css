@@ -1,0 +1,35 @@
+.box-shadow-header{
+    -webkit-box-shadow: 0px 0px 15px 10px rgba(220,220,220,0.6); 
+    box-shadow: 0px 0px 15px 10px rgba(220,220,220,0.6);
+}
+.ant-layout-sider-trigger{
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    color: #ff385c !important;
+}
+button:focus{
+    outline: none;
+}
+.ant-menu-inline .ant-menu-item::after {
+    border-right: 3px solid #ff385c !important;
+}
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused{
+    border-color: #ff385c !important;
+    border-right-width: 1px !important;
+    box-shadow: 0 0 0 2px rgba(222, 26, 55, 0.2) !important;
+    outline: 0;
+}
+.ant-input-affix-wrapper:hover {
+    border-color: #ff385c !important;
+    border-right-width: 1px !important;
+}
+.ant-btn-primary{
+    color: #fff;
+    border-color: #ff385c !important;
+    background: #ff385c !important;
+}
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    color: #fff;
+    border-color: #f80632 !important;
+    background: #f80632 !important;
+}
