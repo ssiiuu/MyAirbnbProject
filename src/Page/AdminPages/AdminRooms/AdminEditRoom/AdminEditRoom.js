@@ -94,16 +94,7 @@ export default function AdminEditRoom() {
             <p className="text-red-600">{formik.errors.name}</p>
           )}
         </Form.Item>
-        {/* <Form.Item label="Location-Id">
-          <Input
-            //  disabled
-            name="locationId"
-            value={JSON.stringify(formik.values.locationId)}
-          />
-          {formik.errors.locationId && formik.touched.locationId && (
-            <p className="text-red-600">{formik.errors.locationId}</p>
-          )}
-        </Form.Item> */}
+
         <Form.Item label="Guests">
           <InputNumber
             value={formik.values.guests}

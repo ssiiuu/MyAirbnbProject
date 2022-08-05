@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const { Meta } = Card;
 export default function ItemRoom({ data }) {
   return (
-    <div className="w-1/3 p-3 ">
+    <div className="itemRoom w-1/3 p-3 ">
       <NavLink
         to={`/detail/${data._id}`}
         className="block w-full  cursor-pointer"

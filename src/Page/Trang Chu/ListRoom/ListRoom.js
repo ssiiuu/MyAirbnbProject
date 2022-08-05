@@ -8,8 +8,11 @@ export default function ListRoom() {
 
   return (
     <div className="container mx-auto pt-16">
-      <h1 className="font-lg text-4xl mb-10">Explore Nearby</h1>
-      <div style={{ flexWrap: "wrap" }} className="flex flex-wrap">
+      <h1 className="listRoom__title font-lg text-4xl mb-10">Explore Nearby</h1>
+      <div
+        style={{ flexWrap: "wrap" }}
+        className="listRoom__list flex flex-wrap"
+      >
         {dsRoom.map((item, index) => {
           if (item.locationId != null && index < 20) {
             return <ItemRoom data={item} key={item._id} />;

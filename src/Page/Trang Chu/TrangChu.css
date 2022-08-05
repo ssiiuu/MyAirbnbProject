@@ -1,0 +1,37 @@
+@media only screen and (max-width: 1025px){
+    /* nav-header */
+ .nav__header__become{
+    display: none !important;
+ }
+}
+@media only screen and (max-width: 769px){
+    /* footer */
+    .footer__list{
+        padding: 20px !important;
+    }
+    /* large-card */
+    .large__card__title h3{
+    font-size: 1.5rem !important;
+    }
+}
+@media only screen and (max-width: 481px){
+    /* footer */
+    .footer_lim{
+        flex-direction: column !important;
+    }
+    /* listRoom */
+    .listRoom__title{
+        font-size: 24px !important;
+    }
+    .itemRoom{
+        width: 100% !important;
+    }
+    /* large__card */
+    .large__card__title {
+        left: 1rem !important
+    }
+    .large__card__title h3{
+        font-size: 1rem !important;
+    }
+    
+}

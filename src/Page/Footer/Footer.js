@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function FooterNav() {
   return (
     <div className={`mx-auto bg-gray-100 rounded-xl  w-full`}>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 px-32 py-14 text-gray-600 border-b">
+      <div className="footer__list grid grid-cols-1 md:grid-cols-4 gap-y-10 px-32 py-14 text-center text-gray-600 border-b">
         <div className="space-y-4 text-xs text-gray-800">
           <h5 className="font-bold text-sm">ABOUT</h5>
           <ul className="footer-nav">
