@@ -75,7 +75,6 @@ export default function ChiTietPhong() {
   const diffDuration = moment.duration(diff);
 
   const handleSelect = (ranges) => {
-    console.log("range", ranges);
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   };
@@ -807,7 +806,7 @@ export default function ChiTietPhong() {
                       {userInfor === null ? (
                         <></>
                       ) : (
-                        <>
+                        <div className="my-3">
                           <button
                             className="w-full text-white text-xl py-3 rounded-2xl"
                             style={{ backgroundColor: "#dc0f62" }}
@@ -829,7 +828,7 @@ export default function ChiTietPhong() {
                           <p className="text-center mt-2">
                             You won't be charged yet
                           </p>
-                        </>
+                        </div>
                       )}
                       <div className="text-lg border-b">
                         <div className="flex justify-between ">

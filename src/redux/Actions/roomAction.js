@@ -115,7 +115,7 @@ export const bookingRoom = (data) => {
         message.success("Đặt phòng thành công!");
       })
       .catch((err) => {
-        console.log("err", err);
+        // console.log("err", err);
         message.error("Đặt phòng thất bại! ");
       });
   };

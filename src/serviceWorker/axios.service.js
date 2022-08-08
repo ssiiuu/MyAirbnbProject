@@ -5,9 +5,7 @@ import {
   set_spinner_end,
   set_spinner_start,
 } from "../redux/Actions/spinnerActions";
-// import { store } from "../index";
 
-//import { set_spinner_end, set_spinner_start } from "../redux/action/spinnerAction";
 import localStorageServ from "./locaStorage.service";
 
 class AxiosService {
@@ -31,7 +29,7 @@ class AxiosService {
       headers: {
         tokenByClass: TOKEN_CYBERSOFT,
         token: localStorageServ.token.get(),
-       Authorization: "bearer " + localStorageServ.token.get(),
+        Authorization: "bearer " + localStorageServ.token.get(),
       },
     };
   };
