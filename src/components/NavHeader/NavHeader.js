@@ -1,54 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
 import { useHistory } from "react-router-dom";
 import UserNav from "./UserNav";
-import localStorageServ from "../../serviceWorker/locaStorage.service";
-import { DOMAIN, TOKEN_CYBERSOFT } from "../../configUrl/configURL";
-import axios from "axios";
 import ItemSearch from "../../Page/Search/ItemSearch";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocationListAction } from "../../redux/Actions/locationAction";
 
 export default function NavHeader() {
   const [searchInput, setSearchInput] = useState("");
-  const [startDate, setstartDate] = useState(new Date());
-  const [endDate, setendDate] = useState(new Date());
-  const [noOfGuests, setNoOfGuests] = useState(1);
   const [scrollNav, setScrollNav] = useState(false);
   let history = useHistory();
 
   const dispatch = useDispatch();
 
-  function handleClick() {
-    localStorageServ.keySearch.set(searchInput);
-  }
-
-  const handleClickData = (data) => {
-    setSearchInput(data);
-  };
-
   const handleClickTrangChu = () => {
     history.push("/");
   };
 
-  const handleSelect = (ranges) => {
-    setstartDate(ranges.selection.startDate);
-    setendDate(ranges.selection.endDate);
-  };
-
-  const resetInput = () => {
-    setSearchInput("");
-  };
-
   const { locationList } = useSelector((state) => state.locationReducer);
-
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: "selection",
-  };
 
   const changeNav = () => {
     if (window.scrollY >= 50) {
@@ -57,8 +27,8 @@ export default function NavHeader() {
       setScrollNav(false);
     }
   };
+  // window.addEventListener("scroll", changeNav);
   useEffect(() => {
-    window.addEventListener("scroll", changeNav);
     dispatch(getLocationListAction());
   }, []);
   //   scrollNav || searchInput ?
@@ -88,14 +58,11 @@ export default function NavHeader() {
             }}
             className="w-full flex-grow pl-5 bg-transparent outline-none placeholder-gray-400 text-gray-600"
             type="text"
-            placeholder="start your search"
+            placeholder="Search destinations"
           />
         </div>
         <div>
-          <button
-            onClick={handleClick}
-            className="flex-grow focus:outline-none text-red-500"
-          >
+          <button className="flex-grow focus:outline-none text-red-500">
             <i className="fa-solid fa-magnifying-glass md:inline-flex text-white bg-red-400 cursor-pointer rounded-full p-2 md:mx-2" />
           </button>
         </div>

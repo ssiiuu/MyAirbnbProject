@@ -29,19 +29,7 @@ import AdminValueate from "./Page/AdminPages/AdminValueate/AdminValueate";
 import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
 import EditUser from "./Page/Trang Chu/Trips/editUser/EditUser";
 
-
 export const history = createBrowserHistory();
-
-// const progress=new ProgressBar({
-//   size:4,
-//   color:"#FE595E",
-//   className:"z-50",
-//   delay:100,
-// });
-// progress.start();
-// setTimeout(() => {
-//   progress.finish();
-// }, 1000);
 
 function App() {
   return (

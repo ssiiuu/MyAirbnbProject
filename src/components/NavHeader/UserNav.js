@@ -13,9 +13,7 @@ export default function UserNav() {
   const handleLogout = () => {
     localStorageServ.userInfor.remove();
     localStorageServ.token.remove();
-    setTimeout(() => {
-      history.push("/login");
-    }, 1500);
+    history.push("/login");
     dispatch({
       type: LOGIN,
       payload: null,
@@ -71,7 +69,7 @@ export default function UserNav() {
               className="dropdown-item pb-2 focus:outline-none focus:bg-gray-300 focus:text-black"
               type="button"
             >
-              Notifications
+              Home
             </button>
           </NavLink>
           <NavLink to={`/profile/${userInfor._id}`}>
@@ -83,29 +81,13 @@ export default function UserNav() {
             </button>
           </NavLink>
         </div>
-        <div className="border-b">
-          <button
-            className="dropdown-item pt-2 focus:outline-none focus:bg-gray-300 focus:text-black"
-            type="button"
-          >
-            Host Your Home
-          </button>
-          <button
-            className="dropdown-item pt-2 focus:outline-none focus:bg-gray-300 focus:text-black"
-            type="button"
-          >
-            Host Your Experience
-          </button>
-          <button
-            className="dropdown-item pt-2 pb-2 focus:outline-none focus:bg-gray-300 focus:text-black"
-            type="button"
-          >
-            Account
-          </button>
-        </div>
         <div>
           <button
-            onClick={handleLogout}
+            onClick={() => {
+              window.confirm(
+                "Bạn có chắc muốn đăng xuất khỏi ứng dụng hay không?"
+              ) && handleLogout();
+            }}
             className="dropdown-item text-red-500 focus:outline-none focus:bg-gray-300"
           >
             Log out

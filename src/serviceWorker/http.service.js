@@ -32,10 +32,10 @@ class HttpRequestService {
     return AxiosServ.getMethod(url);
   };
 
-  datPhong=(data)=>{
-    const url=`/api/rooms/booking`;
-    return AxiosServ.postMethod(url,data);
-  }
+  datPhong = (data) => {
+    const url = `/api/rooms/booking`;
+    return AxiosServ.postMethod(url, data);
+  };
 
   layDanhGiaPhong = (id) => {
     const url = `/api/reviews/byRoom?roomId=${id}`;
@@ -95,7 +95,7 @@ class HttpRequestService {
   };
 
   // location services
-  
+
   getLocationList = (location = "") => {
     if (location.trim() !== "") {
       const uri = `/api/locations?location=${location}`;

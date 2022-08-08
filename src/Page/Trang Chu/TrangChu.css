@@ -13,6 +13,14 @@
     .large__card__title h3{
     font-size: 1.5rem !important;
     }
+    /* listRoom */
+    .listRoom__title{
+        font-size: 24px !important;
+    }
+    .itemRoom{
+        width: 80% !important;
+        margin: 0 auto !important;
+    }
 }
 @media only screen and (max-width: 481px){
     /* footer */

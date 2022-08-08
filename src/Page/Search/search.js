@@ -19,7 +19,6 @@ export default function SearchLo() {
     dispatch(getRoomListAction(locationId));
   }, []);
 
-  console.log("RoomList", roomList);
   const renderRoom = (roomList) => {
     return roomList.map((room, index) => {
       if (room.locationId != null) {

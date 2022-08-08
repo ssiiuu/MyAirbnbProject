@@ -119,8 +119,7 @@
     .banner_car_tet{
         height: 300px;
     }
-}
-
+} 
 @media (min-width: 1024px) {
     .banner_img {
         height: 500px;

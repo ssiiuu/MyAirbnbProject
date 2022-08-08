@@ -11,7 +11,10 @@ import InforTrips from "../InforTrips/InforTrips";
 import MyPofolio from "../MyPofolio/MyPofolio";
 import httpServ from "../../../../serviceWorker/http.service";
 import NavDifferent from "../../../../components/NavDifferent/NavDifferent";
-import { getListTicketsByUserAction, getUserInforAction } from "../../../../redux/Actions/userAction";
+import {
+  getListTicketsByUserAction,
+  getUserInforAction,
+} from "../../../../redux/Actions/userAction";
 import { history } from "../../../../App";
 
 export default function Trips() {
@@ -21,6 +24,7 @@ export default function Trips() {
     (state) => state.userReducer
   );
 
+  // console.log({ userInforDetailsTickets });
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
@@ -29,23 +33,21 @@ export default function Trips() {
     // history.push(`/profile/${id}`);
   }, []);
 
- 
-
   const handleShowMore = () => {
     setShowMore(!showMore);
   };
   let userInforDetailsTicketsSliced;
   showMore
     ? (userInforDetailsTicketsSliced = userInforDetailsTickets.slice(
-      0,
-      userInforDetailsTickets.length
-    ))
+        0,
+        userInforDetailsTickets.length
+      ))
     : (userInforDetailsTicketsSliced = userInforDetailsTickets.slice(0, 2));
 
-  const renderTable = (phong) => {
-    return phong.map((phongItem, index) => {
-      if (phongItem.roomId != null && index < 4) {
-        return <InforTrips phong={phongItem} key={index} />;
+  const renderTripList = (listTrip) => {
+    return listTrip.map((trip, index) => {
+      if (trip.roomId != null) {
+        return <InforTrips trip={trip} key={index} />;
       }
     });
   };
@@ -63,9 +65,10 @@ export default function Trips() {
               onClick={() => {
                 dispatch(getUserInforAction(userInfor._id));
                 setTimeout(() => {
-                     history.push(`/edituser/${userInfor._id}`);
-                   }, 500);
-              }}>
+                  history.push(`/edituser/${userInfor._id}`);
+                }, 500);
+              }}
+            >
               <h3 className="underline cursor-pointer text-lg">Edit profile</h3>
             </button>
             <div className="flex flex-warp mt-8">
@@ -73,7 +76,7 @@ export default function Trips() {
               <h3 className="text-2xl">0 review</h3>
             </div>
             <div className="w-full">
-              {renderTable(userInforDetailsTicketsSliced)}
+              {renderTripList(userInforDetailsTicketsSliced)}
             </div>
             <div className="flex justify-center mt-5">
               {userInforDetailsTickets.length != 0 ? (

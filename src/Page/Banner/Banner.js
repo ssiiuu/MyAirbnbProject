@@ -12,7 +12,7 @@ export default function (props) {
   });
 
   return (
-    <div className="relative banner_back_img overflow-hidden mx-5">
+    <div className="relative banner_back_img overflow-hidden">
       <div className="relative banner_back_img">
         <div className="banner_back">
           <img src="./banner.webp" layout="fit" className="img_back" />

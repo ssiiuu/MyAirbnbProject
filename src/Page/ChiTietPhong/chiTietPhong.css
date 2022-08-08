@@ -54,16 +54,24 @@
     z-index: 10;
 }
 
+@media only screen and (max-width: 480px){
+    .select__checkIn{
+        display: none !important;
+    }
+}
 @media (min-width: 480px) {
   .calendar_item{
     display: none;
   }
+  
 }
 
 @media (min-width: 600px) {
     .calendar_item{
         display: block;
       }
+      
+    
 }
 
 @media (min-width: 1024px) {

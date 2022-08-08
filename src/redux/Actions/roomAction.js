@@ -106,3 +106,17 @@ export const updateImgRoomAction = (roomImg, id) => {
       });
   };
 };
+
+export const bookingRoom = (data) => {
+  return (dispatch) => {
+    httpServ
+      .datPhong(data)
+      .then((res) => {
+        message.success("Đặt phòng thành công!");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        message.error("Đặt phòng thất bại! ");
+      });
+  };
+};

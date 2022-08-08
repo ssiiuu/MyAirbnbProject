@@ -25,10 +25,10 @@ export default function InforCard({ data }) {
             {data.description}
           </p>
           <div className="flex justify-between items-end pt-5">
-            <p className="flex items-center">
+            <div className="flex items-center">
               <i className="fa-solid fa-star h-5 text-red-400"></i>
               <p className="pt-2 pl-1">{data.locationId.valueate}</p>
-            </p>
+            </div>
             <div className="flex items-center">
               <p className="text-sm lg:text-2xl font-semibold pb-2 pt-2">
                 {data.price.toLocaleString()} VND/night
