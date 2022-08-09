@@ -62,7 +62,7 @@ export default function NavHeader() {
           />
         </div>
         <div>
-          <button className="flex-grow focus:outline-none text-red-500">
+          <button className="flex-grow focus:outline-none text-red-500 hidden md:block">
             <i className="fa-solid fa-magnifying-glass md:inline-flex text-white bg-red-400 cursor-pointer rounded-full p-2 md:mx-2" />
           </button>
         </div>
@@ -100,7 +100,7 @@ export default function NavHeader() {
         <div className="hover:bg-gray-100 transition duration-150 rounded-full cursor-pointer">
           <button className="p-2 focus:outline-none">
             {" "}
-            <i className="fa-solid bg-white rounded-full fa-globe w-4" />
+            <i className="fa-solid bg-white rounded-full fa-globe w-4 hidden md:inline" />
           </button>
         </div>
         <UserNav />

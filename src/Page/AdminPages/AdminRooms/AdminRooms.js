@@ -43,7 +43,6 @@ export default function AdminRooms() {
 
   let roomListData = [...roomList];
 
-  console.log("roomListData", roomListData);
   if (searchRoom != "") {
     roomListData = roomList.filter((room) => {
       return room.name?.toLowerCase().includes(searchRoom.toLowerCase());
