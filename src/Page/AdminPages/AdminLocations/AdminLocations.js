@@ -17,7 +17,6 @@ import {
   getLocationListAction,
   updateImgLocationAction,
 } from "../../../redux/Actions/locationAction";
-import UploadLocationImg from "./UploadLocationImg/UploadLocationImg";
 
 const { Search } = Input;
 
@@ -40,7 +39,7 @@ export default function AdminLocation() {
 
   let { locationList } = useSelector((state) => state.locationReducer);
 
-  let locationListData = [...locationList];
+  let locationListData = [...locationList.slice(0, 20)];
 
   if (searchLocation != "") {
     locationListData = locationList.filter((location) => {
@@ -58,8 +57,8 @@ export default function AdminLocation() {
     //Lay file ra tu e
     let file = e.target.files[0];
     setSelectedFile(file);
-    setIsModalVisible(true);
 
+    setIsModalVisible(true);
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (e) => {
@@ -71,7 +70,7 @@ export default function AdminLocation() {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    btnUpdateImgLocation.current.click();
+    // btnUpdateImgLocation.current.click();
   };
 
   const handleCancel = () => {
@@ -170,106 +169,98 @@ export default function AdminLocation() {
 
         <Column
           title="Image"
-          dataIndex="image"
+          dataIndex="_id"
           align="center"
           className="font-semibold"
-          key="image"
-          render={(img) => {
+          key="id"
+          render={(id, item) => {
             return (
-              <Tooltip color={"red"} title="Click để cập nhật ảnh của vị trí">
-                <div
-                  onClick={() => {
-                    fileInput.current.click();
-                  }}
-                  className="flex justify-around items-center cursor-pointer"
-                >
-                  {img ? (
-                    <img
-                      style={{
-                        width: 200,
-                        height: 150,
-                        objectFit: "cover",
-                        borderRadius: 10,
-                      }}
-                      src={img}
-                      alt={img.name}
+              <Tooltip placement="leftTop" color={"red"} title="Chọn ảnh mới">
+                <div className="flex justify-center items-center">
+                  <div
+                    onClick={() => {
+                      console.log(id);
+                      fileInput.current.click();
+                    }}
+                    className="flex justify-around items-center cursor-pointer mr-2"
+                  >
+                    {item.image ? (
+                      <img
+                        style={{
+                          width: 200,
+                          height: 150,
+                          objectFit: "cover",
+                          borderRadius: 10,
+                        }}
+                        src={item.image}
+                        alt={item.image}
+                      />
+                    ) : (
+                      <img
+                        style={{
+                          width: 200,
+                          height: 150,
+                          objectFit: "cover",
+                          borderRadius: 10,
+                          border: "2px solid black",
+                        }}
+                        src="https://bitsofco.de/content/images/2018/12/broken-1.png"
+                        alt="Ảnh của vị trí chưa được cập nhật"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={handleChangeFile}
+                      ref={fileInput}
                     />
-                  ) : (
-                    <img
-                      style={{
-                        width: 200,
-                        height: 150,
-                        objectFit: "cover",
-                        borderRadius: 10,
-                        border: "2px solid black",
-                      }}
-                      src="https://bitsofco.de/content/images/2018/12/broken-1.png"
-                      alt="Ảnh của vị trí chưa được cập nhật"
-                    />
-                  )}
+
+                    <div>
+                      <Button
+                        disabled={!selectedFile}
+                        ref={btnUpdateImgLocation}
+                        onClick={() => {
+                          const formdata = new FormData();
+                          formdata.append(
+                            "location",
+                            selectedFile,
+                            selectedFile?.name
+                          );
+                          setSelectedFile(null);
+                          console.log("item.id", id);
+                          dispatch(updateImgLocationAction(formdata, id));
+                        }}
+                      >
+                        Update
+                      </Button>
+                      <Modal
+                        visible={isModalVisible}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        width={700}
+                        okType={"danger"}
+                      >
+                        <img
+                          style={{
+                            width: 600,
+                            height: 400,
+                            objectFit: "cover",
+                            borderRadius: 14,
+                          }}
+                          src={imageUrl}
+                          alt="..."
+                        />
+                      </Modal>
+                    </div>
+                  </div>
                 </div>
               </Tooltip>
             );
           }}
         />
 
-        <Column
-          dataIndex="_id"
-          key="image"
-          align="center"
-          render={(id) => {
-            return (
-              <div>
-                <input
-                  style={{ display: "none" }}
-                  type="file"
-                  onChange={handleChangeFile}
-                  ref={fileInput}
-                />
-                {selectedFile ? (
-                  <div>
-                    <Modal
-                      visible={isModalVisible}
-                      onOk={handleOk}
-                      onCancel={handleCancel}
-                      width={700}
-                      okType={"danger"}
-                    >
-                      <img
-                        style={{
-                          width: 600,
-                          height: 400,
-                          objectFit: "cover",
-                          borderRadius: 14,
-                        }}
-                        src={imageUrl}
-                        alt="..."
-                      />
-                    </Modal>
-                    <Button
-                      ref={btnUpdateImgLocation}
-                      style={{ display: "none" }}
-                      onClick={() => {
-                        const formdata = new FormData();
-                        formdata.append(
-                          "location",
-                          selectedFile,
-                          selectedFile?.name
-                        );
-                        setSelectedFile(null);
-                        dispatch(updateImgLocationAction(formdata, id));
-                      }}
-                    >
-                      Update
-                    </Button>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
-            );
-          }}
-        />
         <Column
           title="Province"
           align="center"
@@ -306,7 +297,6 @@ export default function AdminLocation() {
                     onClick={() => {
                       dispatch(getLocationDetailAction(id));
                       history.push(`/admin/location/detail/${id}`);
-                      // dispatch(getListTicketsByUserAction(id));
                     }}
                     className="text-green-600 text-2xl mr-4 cursor-pointer"
                   >

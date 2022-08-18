@@ -76,7 +76,7 @@ export default function AdminRooms() {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    btnUpdateImg.current.click();
+    // btnUpdateImg.current.click();
   };
 
   const handleCancel = () => {
@@ -175,80 +175,51 @@ export default function AdminRooms() {
           align="center"
           className="font-semibold"
           key="image"
-          render={(img) => {
+          render={(img, item) => {
             return (
-              <Tooltip color={"red"} title={"Click để cập nhật ảnh của phòng"}>
-                <div
-                  onClick={() => {
-                    fileInput.current.click();
-                  }}
-                  className="flex justify-around items-center cursor-pointer"
-                >
-                  {img ? (
-                    <img
-                      style={{
-                        width: 200,
-                        height: 150,
-                        objectFit: "cover",
-                        borderRadius: 10,
-                      }}
-                      src={img}
-                      alt={img.name}
-                    />
-                  ) : (
-                    <img
-                      style={{
-                        width: 200,
-                        height: 150,
-                        objectFit: "cover",
-                        borderRadius: 10,
-                        border: "2px solid black",
-                      }}
-                      src="https://bitsofco.de/content/images/2018/12/broken-1.png"
-                      alt="Ảnh của phòng chưa được cập nhật"
-                    />
-                  )}
-                </div>
-              </Tooltip>
-            );
-          }}
-        />
-        <Column
-          dataIndex="_id"
-          key="image"
-          align="center"
-          render={(id) => {
-            return (
-              <div>
-                <input
-                  style={{ display: "none" }}
-                  type="file"
-                  onChange={handleChangeFile}
-                  ref={fileInput}
-                />
-                {selectedFile ? (
-                  <div>
-                    <Modal
-                      visible={isModalVisible}
-                      onOk={handleOk}
-                      onCancel={handleCancel}
-                      width={700}
-                      okType={"danger"}
-                    >
+              <Tooltip placement="leftTop" color={"red"} title={"Chọn ảnh mới"}>
+                <div className="flex justify-center items-center">
+                  <div
+                    onClick={() => {
+                      fileInput.current.click();
+                    }}
+                    className="flex justify-around items-center cursor-pointer mr-2"
+                  >
+                    {img ? (
                       <img
                         style={{
-                          width: 600,
-                          height: 400,
+                          width: 200,
+                          height: 150,
                           objectFit: "cover",
-                          borderRadius: 14,
+                          borderRadius: 10,
                         }}
-                        src={imageUrl}
-                        alt="..."
+                        src={img}
+                        alt={img.name}
                       />
-                    </Modal>
+                    ) : (
+                      <img
+                        style={{
+                          width: 200,
+                          height: 150,
+                          objectFit: "cover",
+                          borderRadius: 10,
+                          border: "2px solid black",
+                        }}
+                        src="https://bitsofco.de/content/images/2018/12/broken-1.png"
+                        alt="Ảnh của phòng chưa được cập nhật"
+                      />
+                    )}
+                  </div>
+                  <input
+                    style={{ display: "none" }}
+                    type="file"
+                    onChange={handleChangeFile}
+                    ref={fileInput}
+                  />
+                  <Tooltip color={"red"} title={"Cập nhật"}>
                     <Button
                       ref={btnUpdateImg}
-                      style={{ display: "none" }}
+                      disabled={!selectedFile}
                       onClick={() => {
                         const formdata = new FormData();
                         formdata.append(
@@ -257,16 +228,32 @@ export default function AdminRooms() {
                           selectedFile?.name
                         );
                         setSelectedFile(null);
-                        dispatch(updateImgRoomAction(formdata, id));
+                        dispatch(updateImgRoomAction(formdata, item._id));
                       }}
                     >
                       Update
                     </Button>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
+                  </Tooltip>
+                  <Modal
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                    width={700}
+                    okType={"danger"}
+                  >
+                    <img
+                      style={{
+                        width: 600,
+                        height: 400,
+                        objectFit: "cover",
+                        borderRadius: 14,
+                      }}
+                      src={imageUrl}
+                      alt="..."
+                    />
+                  </Modal>
+                </div>
+              </Tooltip>
             );
           }}
         />
